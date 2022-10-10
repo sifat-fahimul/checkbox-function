@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import './style.css';
+import React, { useEffect, useState } from "react";
+import "./style.css";
 
 export default function App() {
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
 
   const handleCheck = (e) => {
     const { name, checked } = e.target;
-    if (name === 'allselect') {
+    if (name === "allselect") {
       const tempUser = data.map((e) => {
         return { ...e, isChecked: checked };
       });
@@ -25,13 +25,12 @@ export default function App() {
     }
   };
 
-  useEffect(()=>{
+  // get check box data
+  useEffect(() => {
+    const selectedValue = data.filter((e) => e.isChecked == true);
 
-    const selectedValue=data.filter(e=>e.isChecked==true)
-
-    console.log("selectedValue",selectedValue)
-    },[data])
-
+    console.log("selectedValue", selectedValue);
+  }, [data]);
 
   return (
     <div>
@@ -54,7 +53,7 @@ export default function App() {
           <th>name</th>
         </thead>
         <tbody>
-          {data.map(e => {
+          {data.map((e) => {
             return (
               <tr key={e?.id}>
                 <td>{e?.id}</td>
