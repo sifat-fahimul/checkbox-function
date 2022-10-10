@@ -3,6 +3,8 @@ import "./style.css";
 
 export default function App() {
   const [data, setData] = useState([]);
+
+  // fetch data from jsonplaceholder
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
